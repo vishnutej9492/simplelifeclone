@@ -1,0 +1,4 @@
+django==1.10.4
+django-authtools==1.5.0
+django-bootstrap3==8.1.0
+django-parsley==0.6

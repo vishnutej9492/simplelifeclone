@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <h1>Edit policy</h1>
+    <form method="POST">{% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        {% endbuttons %}
+    </form>
+    <script>
+        $('#id_start_date').datepicker({});
+        $('#id_end_date').datepicker({});
+    </script>
+
+{% endblock %}

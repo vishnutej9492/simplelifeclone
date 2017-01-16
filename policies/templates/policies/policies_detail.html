@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Specific Policy</h1>
+{% if user.is_authenticated %}
+    <a class="btn btn-primary pull-right" href="{% url 'policy_edit' pk=object.pk %}">Edit</a>
+{% endif %}
+</div>
+            <p>Owner: {{ object.owner }}</p>
+            <p>Policy Number: {{ object.policy_number }}</p>
+            <p>Carrier Name: {{ object.carrier_name }}</p>
+            <p>Start Date: {{ object.start_date }}</p>
+            <p>End Date: {{ object.end_date }}</p>
+{% endblock %}

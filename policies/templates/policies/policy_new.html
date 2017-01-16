@@ -1,0 +1,43 @@
+{% load bootstrap3 %}
+<div class="modal-dialog" role="document" id="modal-contents">
+    <div class="modal-content">
+        <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" style="float: right;">
+                <span>New Policy</span>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive styled-table">
+                <form id="new-policy-form" method="POST" action="{% url 'policy_new' %}">{% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary"> Submit
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#id_start_date').datepicker({});
+    $('#id_end_date').datepicker({});
+{#    $("#new-policy-form").submit(function(e) {#}
+{##}
+{#        var url = "{% url 'policy_new' %}"; // the script where you handle the form input.#}
+{##}
+{#        $.ajax({#}
+{#               type: "POST",#}
+{#               url: url,#}
+{#               data: $("#new-policy-form").serialize(), // serializes the form's elements.#}
+{#               success: function(data, status, jqXHR)#}
+{#               {#}
+{#                   $( "#modal-contents" ).replaceWith( data );#}
+{#               }#}
+{#             });#}
+{##}
+{#        e.preventDefault(); // avoid to execute the actual submit of the form.#}
+{#    });#}
+</script>
