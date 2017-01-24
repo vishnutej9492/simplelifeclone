@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'policies',
     'authtools',
+    'material',
+    'material.frontend',
     'django.contrib.admin',
 ]
 

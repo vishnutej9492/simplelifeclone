@@ -4,7 +4,7 @@
 {% block content %}
 <div>
     <h1>My Policies</h1>
-    <a class="btn btn-primary pull-right" id="policy-new" href="#" data-toggle="modal" data-target="#modal">New Policy</a>
+    <a class="btn btn-primary pull-right" id="policy-new">New Policy</a>
     <br/>
     <br/>
 </div>
@@ -17,14 +17,4 @@
         </div>
         <hr>
     {% endfor %}
-
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="New Policy">
-    </div>
-    <script src="{% static 'js/center.modal.js' %}"></script>
-    <script type="text/javascript">
-        $("#policy-new").on('click', function () {
-            $('#modal').load("{% url 'policy_new' %}").show();
-        });
-
-    </script>
 {% endblock %}

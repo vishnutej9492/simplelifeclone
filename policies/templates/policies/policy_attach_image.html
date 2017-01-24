@@ -27,24 +27,3 @@
 <input type="submit" value="{% trans "submit" %}"/>
 </form>
 {% endblock %}
-
-<script>
-    $('#id_start_date').datepicker({});
-    $('#id_end_date').datepicker({});
-{#    $("#new-policy-form").submit(function(e) {#}
-{##}
-{#        var url = "{% url 'policy_new' %}"; // the script where you handle the form input.#}
-{##}
-{#        $.ajax({#}
-{#               type: "POST",#}
-{#               url: url,#}
-{#               data: $("#new-policy-form").serialize(), // serializes the form's elements.#}
-{#               success: function(data, status, jqXHR)#}
-{#               {#}
-{#                   $( "#modal-contents" ).replaceWith( data );#}
-{#               }#}
-{#             });#}
-{##}
-{#        e.preventDefault(); // avoid to execute the actual submit of the form.#}
-{#    });#}
-</script>

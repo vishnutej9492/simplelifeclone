@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django import forms
 
 # Create your models here.
 
@@ -24,9 +25,7 @@ class Policy(models.Model):
     premium = models.DecimalField(max_digits=10,decimal_places=2,blank=True, null=True)
     frequency = models.CharField(max_length=20, choices=FREQ_CHOICES, blank=True, null=True)
     pdf=models.FileField(upload_to=file_name, blank=True, null=True)
-
-    class Meta:
-        unique_together = (("carrier_name", "policy_number"),)
+    image_name=models.CharField("person's first name",max_length=100)
 
     def save_policy(self):
         self.save()

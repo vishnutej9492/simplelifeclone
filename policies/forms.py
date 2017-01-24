@@ -1,7 +1,7 @@
 from django import forms
 from .models import Policy
 from parsley.decorators import parsleyfy
-
+from django.utils.safestring import mark_safe
 
 @parsleyfy
 class PolicyForm(forms.ModelForm):
@@ -28,3 +28,25 @@ class PolicyForm(forms.ModelForm):
         self.fields['premium'].required = False
         self.fields['frequency'].required = False
         self.fields['pdf'].required = False
+
+class PolicyForm2(forms.ModelForm):
+    class Meta:
+        model = Policy
+        fields = (
+            'pdf',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(PolicyForm2, self).__init__(*args, **kwargs)
+        self.fields['pdf'].required = False
+
+class PolicyForm3(forms.ModelForm):
+    class Meta:
+        model = Policy
+        fields = (
+            'image_name',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(PolicyForm3, self).__init__(*args, **kwargs)
+        self.fields['image_name'].required = False
