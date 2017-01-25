@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'policies',
     'authtools',
     'material',
-    'material.frontend',
     'django.contrib.admin',
 ]
 

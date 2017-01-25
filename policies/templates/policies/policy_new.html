@@ -1,3 +1,6 @@
+
+{% extends 'base.html' %}
+{% load material_form %}
 {% load bootstrap3 %}
 
 {% load i18n %}
@@ -7,44 +10,22 @@
 {% endblock %}
 
 {% block content %}
-<p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-<form action="" method="post">{% csrf_token %}
-<table>
-{{ wizard.management_form }}
-{% if wizard.form.forms %}
-    {{ wizard.form.management_form }}
-    {% for form in wizard.form.forms %}
-        {{ form }}
-    {% endfor %}
-{% else %}
-    {{ wizard.form }}
-{% endif %}
-</table>
-{% if wizard.steps.prev %}
-<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
-{% endif %}
-<input type="submit" value="{% trans "submit" %}"/>
+<h1>New policy</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+    {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+                {% form %}{% endform %}
+            {% endfor %}
+    {% else %}
+        {% form form=wizard.form %}{% endform %}
+    {% endif %}
+    <hr>
+
+    <a href="{% url 'policies_list' %}" class="btn pull-left">Cancel</a>
+    <button type="submit" name="_submit" class="btn pull-right">Next</button>
+
 </form>
 {% endblock %}
-
-<script>
-    $('#id_start_date').datepicker({});
-    $('#id_end_date').datepicker({});
-{#    $("#new-policy-form").submit(function(e) {#}
-{##}
-{#        var url = "{% url 'policy_new' %}"; // the script where you handle the form input.#}
-{##}
-{#        $.ajax({#}
-{#               type: "POST",#}
-{#               url: url,#}
-{#               data: $("#new-policy-form").serialize(), // serializes the form's elements.#}
-{#               success: function(data, status, jqXHR)#}
-{#               {#}
-{#                   $( "#modal-contents" ).replaceWith( data );#}
-{#               }#}
-{#             });#}
-{##}
-{#        e.preventDefault(); // avoid to execute the actual submit of the form.#}
-{#    });#}
-</script>

@@ -18,3 +18,26 @@ h1 {
         margin-left: 10%;
         margin-bottom: 40px;
  }
+
+#id_upload_pdf-pdf_container{
+    min-height: 500px;
+}
+
+#id_upload_pdf-pdf_container > div.btn{
+    float:right;
+    margin-top: 25%;
+}
+
+#id_upload_pdf-pdf_container > div.file-path-wrapper{
+    margin-top: 25%;
+}
+
+#id_upload_pdf-pdf_container{
+    border: dashed;
+    border-width: 2px;
+}
+
+body > div.container > div > div > form > button{
+    float:right;
+}
+

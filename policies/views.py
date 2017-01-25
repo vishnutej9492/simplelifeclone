@@ -7,6 +7,7 @@ from .forms import PolicyForm, PolicyForm2, PolicyForm3
 from formtools.wizard.views import SessionWizardView
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+from django.forms.models import construct_instance
 import sys,os
 
 # Create your views here.
@@ -43,14 +44,18 @@ class PolicyWizard(SessionWizardView):
         create_policy_data = self.get_cleaned_data_for_step('create_policy')
         if create_policy_data:
             context.update({'create_policy_data': create_policy_data['policy_number']})
-
         return context
 
     def get_template_names(self):
         return TEMPLATES[self.steps.current]
 
-    def done(self, form_list, **kwargs):
-        return redirect('policies_list')
+    def done(self, form_list,form_dict, **kwargs):
+        policy = Policy()
+        policy.owner = self.request.user
+        for form in form_list:
+            policy = construct_instance(form, policy, form._meta.fields, form._meta.exclude)
+        policy.save()
+        return redirect('policy_detail', pk=policy.pk)
 
 class PolicyDetail(DetailView):
     model = Policy
