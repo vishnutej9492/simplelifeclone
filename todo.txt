@@ -1,5 +1,1 @@
-Hooks to display PDF + Drag/Drop
-Multi step django form (django-formtools) (form wizard)
-Icon selection
-Front-end/ UI/ Styling
-Testing!
+Icon selection! [ModelChoiceField/ marksafe overload image /jQuery]

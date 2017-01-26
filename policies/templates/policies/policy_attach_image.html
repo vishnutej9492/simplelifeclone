@@ -10,13 +10,11 @@
 {% block content %}
 <h1>Want to find policies easier? Pick an icon!</h1>
 <form action="" method="post">{% csrf_token %}
-    {% csrf_token %}
     {{ wizard.management_form }}
     {% if wizard.form.forms %}
         {{ wizard.form.management_form }}
             {% for form in wizard.form.forms %}
                 {% form form=wizard.form %}
-
                 {% endform %}
             {% endfor %}
     {% else %}

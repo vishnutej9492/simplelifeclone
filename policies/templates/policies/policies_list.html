@@ -4,17 +4,38 @@
 {% block content %}
 <div>
     <h1>My Policies</h1>
-    <a class="btn pull-right" href="policy/new/" id="policy-new">New Policy</a>
+    <a class="btn pull-right" href="policy/new/" id="policy-new">+ Add new policy</a>
+    <br/>
     <br/>
     <br/>
 </div>
     {% for policy in policies %}
-        <div>
-            <p><a href="{% url 'policy_detail' pk=policy.pk %}">{{ policy.policy_number }}</a></p>
-            <p>Carrier Name: {{ policy.carrier_name }}</p>
-            <p>Start Date: {{ policy.start_date }}</p>
-            <p>End Date: {{ policy.end_date }}</p>
+        <div class="pull-left image-deets">
+        <p>{{ policy.image_name }}</p>
+        <p>{{ policy.carrier_name }}</p>
         </div>
+        <div class="center-align">
+            <table class="table borderless" >
+              <tr>
+                  <td>Policy #</td>
+              <td><a href="{% url 'policy_detail' pk=policy.pk %}">{{ policy.policy_number }}</a></td>
+                  </tr>
+                <tr>
+              <td>Start Date</td>
+              <td>{{ policy.start_date }}</td></tr>
+              <tr>
+                <td>End Date</td>
+              <td>{{ policy.end_date }}</td></tr>
+              <tr>
+                <td>Customer Service #</td>
+              <td>{{ policy.cust_serv_number }}</td></tr>
+              <tr>
+                <td>Customer Service email</td>
+              <td>{{ policy.cust_serv_email }}</td></tr>
+            </table>
+            {% if policy.pdf %}<a class = "glyphicon glyphicon-folder-open pull-right" target="_blank" href="{{ policy.pdf.url }}"></a>{% endif %}
+        </div>
+        <br/>
         <hr>
     {% endfor %}
 {% endblock %}

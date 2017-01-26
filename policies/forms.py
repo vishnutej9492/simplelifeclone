@@ -1,7 +1,8 @@
 from django import forms
 from .models import Policy
 from parsley.decorators import parsleyfy
-
+from django.utils.safestring import mark_safe
+from policies.models import FREQ_CHOICES, IMAGE_CHOICES
 @parsleyfy
 class PolicyForm(forms.ModelForm):
     class Meta:
@@ -16,10 +17,6 @@ class PolicyForm(forms.ModelForm):
             'premium',
             'frequency',
         )
-        widgets = {
-            'frequency': forms.Select(
-                choices=Policy.FREQ_CHOICES, attrs={'class': 'chosen'}),
-        }
 
     def __init__(self, *args, **kwargs):
         super(PolicyForm, self).__init__(*args, **kwargs)
@@ -33,7 +30,7 @@ class PolicyForm(forms.ModelForm):
         self.fields['cust_serv_email'].required = False
         self.fields['premium'].required = False
         self.fields['frequency'].required = False
-        self.fields['frequency'].widget = forms.Select(choices=Policy.FREQ_CHOICES, attrs={'class': 'chosen'})
+        self.fields['frequency'] = forms.ChoiceField(choices=FREQ_CHOICES, widget=forms.Select(attrs={'class':'browser-default'}))
 
 class PolicyForm2(forms.ModelForm):
     class Meta:
@@ -45,7 +42,7 @@ class PolicyForm2(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PolicyForm2, self).__init__(*args, **kwargs)
         self.fields['pdf'].required = False
-        self.fields['pdf'].label = 'Drag policy here or '
+        self.fields['pdf'].label = 'Drag policy here or'
 
 class PolicyForm3(forms.ModelForm):
     class Meta:
@@ -56,4 +53,6 @@ class PolicyForm3(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PolicyForm3, self).__init__(*args, **kwargs)
+        self.fields['image_name'].label = ''
         self.fields['image_name'].required = False
+        self.fields['image_name'] = forms.ChoiceField(choices=IMAGE_CHOICES,widget=forms.RadioSelect())

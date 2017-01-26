@@ -41,3 +41,29 @@ body > div.container > div > div > form > button{
     float:right;
 }
 
+#id_create_policy-frequency select{
+    display: inline !important;
+}
+
+.regdropdown{
+    display: inline !important;
+}
+
+.borderless{
+    border:none;
+}
+
+body > div.container > div > div > div.center-align > table{
+    width:60%;
+    border: none;
+    font-size: 12px;
+    margin: 0 auto;
+}
+
+body > div.container > div > div > div.center-align > table > tbody > tr:nth-child(n) > td:nth-child(n){
+    border: none;
+}
+
+.image-deets{
+
+}

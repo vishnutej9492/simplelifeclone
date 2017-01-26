@@ -39,8 +39,6 @@ class PolicyWizard(SessionWizardView):
     file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'pdf'))
     def get_context_data(self, form, **kwargs):
         context = super(PolicyWizard, self).get_context_data(form, **kwargs)
-
-        # Make the organization name available to all forms
         create_policy_data = self.get_cleaned_data_for_step('create_policy')
         if create_policy_data:
             context.update({'create_policy_data': create_policy_data['policy_number']})
@@ -48,6 +46,9 @@ class PolicyWizard(SessionWizardView):
 
     def get_template_names(self):
         return TEMPLATES[self.steps.current]
+
+    def get_form_instance(self, step):
+        return self.instance_dict.get(step, None)
 
     def done(self, form_list,form_dict, **kwargs):
         policy = Policy()
